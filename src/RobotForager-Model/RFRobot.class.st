@@ -74,14 +74,14 @@ RFRobot >> neighbourWithMineral [
 	^ self patch neighbourhood detect: [ :cell | cell hasMineral ]
 ]
 
-{ #category : 'accessing' }
+{ #category : 'pov' }
 RFRobot >> pov [
 
 	<pov>
 	^ CMPointOfView
 		color: RFColor blue
 		shape: #star
-		size: 15
+		size:  0.8
 ]
 
 { #category : 'control' }

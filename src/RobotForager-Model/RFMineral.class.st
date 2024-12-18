@@ -7,12 +7,12 @@ Class {
 	#package : 'RobotForager-Model'
 }
 
-{ #category : 'accessing' }
+{ #category : 'pov' }
 RFMineral >> pov [
 
 	<pov>
 	^ CMPointOfView
 		color: RFColor gold
 		shape: #diamond
-		size: 7
+		size: 0.5
 ]
