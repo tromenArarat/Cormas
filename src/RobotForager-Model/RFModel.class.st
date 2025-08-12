@@ -13,11 +13,23 @@ Class {
 	#package : 'RobotForager-Model'
 }
 
+{ #category : 'accessing' }
+RFModel class >> aboutThisModel [ 
+
+	^ 'RobotForager — Inspired by Steels (1989), this model simulates autonomous robots cooperating to collect scattered mineral resources on a grid. Robots move asynchronously, scanning neighboring cells for minerals and collecting them when found; otherwise, they explore randomly. The environment is a square grid with mutually exclusive placement of robots and minerals at initialization. Two scenarios are provided: a small 5×5 grid with 2 robots and 20 minerals, and a large 27×27 grid with 10 robots and 200 minerals. The model illustrates decentralized coordination in distributed agent systems, applicable to tasks such as planetary exploration, waste cleanup, or resource harvesting.'
+]
+
 { #category : 'initialization' }
 RFModel class >> initializeParameters [
 
 	super initializeParameters.
 	numberOfMinerals := 10
+]
+
+{ #category : 'accessing' }
+RFModel class >> modelName [
+
+	^ 'Robot Forager'
 ]
 
 { #category : 'accessing' }
