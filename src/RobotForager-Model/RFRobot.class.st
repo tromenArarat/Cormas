@@ -17,7 +17,7 @@ RFRobot >> allRobots: aCollection [
 
 { #category : 'as yet unclassified' }
 RFRobot >> collectMineral [
-
+	<action>
 	minerals addAll:
 		((self patch getMinerals) do: [ :mineral |
 			 mineral leave.
@@ -46,7 +46,7 @@ RFRobot >> minerals [
 
 { #category : 'as yet unclassified' }
 RFRobot >> move [
-
+	<action>
 	self patch neighbourhood
 		detect: [ :cell | cell hasMineral ]
 		ifFound: [ :cell | self moveTo: cell ]
@@ -99,7 +99,7 @@ RFRobot >> povSimple [
 
 { #category : 'control' }
 RFRobot >> step [
-
+	<action>
 	self move.
 	self collectMineral.
 ]
