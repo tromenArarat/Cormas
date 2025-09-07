@@ -1,8 +1,6 @@
 Class {
 	#name : 'RFRobot',
 	#superclass : 'CMAgent',
-	#traits : 'TCMLocated',
-	#classTraits : 'TCMLocated classTrait',
 	#instVars : [
 		'minerals',
 		'allRobots'

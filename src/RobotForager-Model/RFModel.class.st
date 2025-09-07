@@ -1,11 +1,6 @@
 Class {
 	#name : 'RFModel',
 	#superclass : 'CMAbstractModel',
-	#instVars : [
-		'theRobots',
-		'theMinerals',
-		'theCells'
-	],
 	#classInstVars : [
 		'numberOfMinerals'
 	],
@@ -65,7 +60,7 @@ RFModel >> initLarge [
 	self createN: 10 randomlyLocatedAloneEntities: RFRobot. 
 	self createN: self class numberOfMinerals randomlyLocatedAloneEntities: RFMineral.
 	
-	theRobots do: [ :each | each allRobots: theRobots ]
+	(self @@ RFRobot) do: [ :each | each allRobots: (self @@ RFRobot) ]
 ]
 
 { #category : 'initialization' }
@@ -83,30 +78,21 @@ RFModel >> initSmall [
 	self createN: 2 randomlyLocatedAloneEntities: RFRobot. 
 	self createN: self class numberOfMinerals randomlyLocatedAloneEntities: RFMineral.
 	
-	theRobots do: [ :each | each allRobots: theRobots ]
-]
-
-{ #category : 'initialization' }
-RFModel >> initialize [
-	
-	super initialize.
-	theCells := OrderedCollection new.
-	theRobots := OrderedCollection new.
-	theMinerals := OrderedCollection new
+	(self @@ RFRobot) do: [ :each | each allRobots: (self @@ RFRobot) ]
 ]
 
 { #category : 'probes' }
 RFModel >> nbAvailableMinerals [
 
 	<probeNamed: 'Number of available minerals' color: 'E5B80B'>
-	^ theCells count: [ :cell | cell hasMineral ]
+	^ (self @@ RFCell) count: [ :cell | cell hasMineral ]
 ]
 
 { #category : 'probes' }
 RFModel >> nbCollectedMinerals [
 
 	<probeNamed: 'Number of collected minerals' color: '5579C6'>
-	^ theRobots sum: [ :robot | robot minerals size ]
+	^ (self @@ RFRobot) sum: [ :robot | robot minerals size ]
 ]
 
 { #category : 'stepping' }
@@ -114,7 +100,7 @@ RFModel >> step [
 	
 	<control>
 	"self askRandom: RFRobot toDo: #step."
-	(self shuffled: theRobots) do: #step.
+	(self shuffled: (self @@ RFRobot)) do: #step.
 ]
 
 { #category : 'stepping' }
@@ -122,25 +108,4 @@ RFModel >> stepCollaboratively [
 	
 	<control>
 	self askRandom: RFRobot toDo: #stepCollaboratively 
-]
-
-{ #category : 'accessing - entities' }
-RFModel >> theCells [
-
-	<getterFor: #RFCell>
-	^ theCells
-]
-
-{ #category : 'accessing - entities' }
-RFModel >> theMinerals [
-
-	<getterFor: #RFMineral>
-	^ theMinerals
-]
-
-{ #category : 'accessing - entities' }
-RFModel >> theRobots [
-
-	<getterFor: #RFRobot>
-	^ theRobots
 ]

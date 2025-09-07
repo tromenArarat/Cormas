@@ -1,8 +1,6 @@
 Class {
 	#name : 'RFMineral',
 	#superclass : 'CMAgent',
-	#traits : 'TCMLocated',
-	#classTraits : 'TCMLocated classTrait',
 	#category : 'RobotForager-Model',
 	#package : 'RobotForager-Model'
 }
