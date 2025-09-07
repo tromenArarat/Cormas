@@ -9,8 +9,23 @@ Class {
 RFMineral >> pov [
 
 	<pov>
+	| image |
+	
+	image := (self cormasModel spaceModel numberOfRows < 10)
+		ifTrue: [ RFIcons mineralLarge ]
+		ifFalse: [ RFIcons mineral ].
+		
 	^ CMPointOfView
-		color: RFColor gold
+		image: image
+		size: 0.9
+]
+
+{ #category : 'pov' }
+RFMineral >> povSimple [
+
+	<pov>
+	^ CMPointOfView
+		color: CMColor gold
 		shape: #diamond
 		size: 0.5
 ]

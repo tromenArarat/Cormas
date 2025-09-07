@@ -76,8 +76,23 @@ RFRobot >> neighbourWithMineral [
 RFRobot >> pov [
 
 	<pov>
+	| image |
+	
+	image := (self cormasModel spaceModel numberOfRows < 10)
+		ifTrue: [ RFIcons robotLarge ]
+		ifFalse: [ RFIcons robot ].
+		
 	^ CMPointOfView
-		color: RFColor blue
+		image: image
+		size: 0.9
+]
+
+{ #category : 'pov' }
+RFRobot >> povSimple [
+
+	<pov>
+	^ CMPointOfView
+		color: CMColor blue
 		shape: #star
 		size:  0.8
 ]

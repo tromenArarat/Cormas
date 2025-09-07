@@ -21,5 +21,18 @@ RFCell >> hasMineral [
 RFCell >> pov [
 
 	<pov>
+	| image |
+	
+	image := (self cormasModel spaceModel numberOfRows < 10)
+		ifTrue: [ RFIcons floorLarge ]
+		ifFalse: [ RFIcons floor ].
+	
+	^ CMPointOfView image: image
+]
+
+{ #category : 'accessing' }
+RFCell >> povSimple [
+
+	<pov>
 	^ CMPointOfView color: Color gray lighter
 ]
