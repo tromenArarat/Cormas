@@ -1,6 +1,6 @@
 Class {
 	#name : 'RFCell',
-	#superclass : 'CMSpatialEntityElement',
+	#superclass : 'CMCell',
 	#category : 'RobotForager-Model',
 	#package : 'RobotForager-Model'
 }
