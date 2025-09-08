@@ -36,6 +36,12 @@ RFIcons class >> largeExtent [
 ]
 
 { #category : 'as yet unclassified' }
+RFIcons class >> microUmlIgnore [
+
+	^ true
+]
+
+{ #category : 'as yet unclassified' }
 RFIcons class >> mineral [
 
 	<script: 'self mineral inspect'>
