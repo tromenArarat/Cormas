@@ -19,7 +19,7 @@ RFRobot >> allRobots: aCollection [
 RFRobot >> collectMineral [
 	<action>
 	minerals addAll:
-		((self patch getMinerals) do: [ :mineral |
+		((self cell getMinerals) do: [ :mineral |
 			 mineral leave.
 			 mineral ])
 ]
@@ -27,7 +27,7 @@ RFRobot >> collectMineral [
 { #category : 'testing' }
 RFRobot >> hasNeighbourWithMineral [
 
-	^ self patch neighbourhood anySatisfy: [ :cell | cell hasMineral ]
+	^ self cell neighbourhood anySatisfy: [ :each | each hasMineral ]
 ]
 
 { #category : 'initialization' }
@@ -47,18 +47,18 @@ RFRobot >> minerals [
 { #category : 'as yet unclassified' }
 RFRobot >> move [
 	<action>
-	self patch neighbourhood
-		detect: [ :cell | cell hasMineral ]
-		ifFound: [ :cell | self moveTo: cell ]
+	self cell neighbourhood
+		detect: [ :each | each hasMineral ]
+		ifFound: [ :each | self moveTo: each ]
 		ifNone: [ self randomWalk ]
 ]
 
 { #category : 'as yet unclassified' }
 RFRobot >> moveCollaboratively [
 
-	self patch neighbourhood
-		detect: [ :cell | cell hasMineral ]
-		ifFound: [ :cell | self moveTo: cell ]
+	self cell neighbourhood
+		detect: [ :each | each hasMineral ]
+		ifFound: [ :each | self moveTo: each ]
 		ifNone: [ 
 			allRobots
 				detect: [ :robot | robot hasNeighbourWithMineral ]
@@ -69,7 +69,7 @@ RFRobot >> moveCollaboratively [
 { #category : 'testing' }
 RFRobot >> neighbourWithMineral [
 
-	^ self patch neighbourhood detect: [ :cell | cell hasMineral ]
+	^ self cell neighbourhood detect: [ :each | each hasMineral ]
 ]
 
 { #category : 'pov' }
