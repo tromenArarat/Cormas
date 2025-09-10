@@ -94,7 +94,7 @@ RFRobot >> povSimple [
 	^ CMPointOfView
 		color: CMColor blue
 		shape: #star
-		size:  0.8
+		size:  0.7
 ]
 
 { #category : 'control' }

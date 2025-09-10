@@ -27,5 +27,5 @@ RFMineral >> povSimple [
 	^ CMPointOfView
 		color: CMColor gold
 		shape: #diamond
-		size: 0.5
+		size: 0.4
 ]
