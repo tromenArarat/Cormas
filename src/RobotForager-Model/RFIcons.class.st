@@ -94,3 +94,7 @@ RFIcons class >> smallExtent [
 
 	^ 20@20
 ]
+
+{ #category : 'see class side' }
+RFIcons >> seeClassSide [
+]

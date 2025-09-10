@@ -91,7 +91,7 @@ RFModel >> initSmall [
 RFModel >> nbAvailableMinerals [
 
 	<probeNamed: 'Number of available minerals' color: 'E5B80B'>
-	^ (self @@ RFCell) count: [ :cell | cell hasMineral ]
+	^ (self @@ RFCell) count: [ :each | each hasMineral ]
 ]
 
 { #category : 'probes' }
