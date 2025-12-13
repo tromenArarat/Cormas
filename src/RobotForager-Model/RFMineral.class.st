@@ -9,14 +9,9 @@ Class {
 RFMineral >> pov [
 
 	<pov>
-	| image |
-	
-	image := (self cormasModel spaceModel numberOfRows < 10)
-		ifTrue: [ RFIcons mineralLarge ]
-		ifFalse: [ RFIcons mineral ].
 		
 	^ CMPointOfView
-		image: image
+		tile: RFIcons mineral
 		size: 0.9
 ]
 
