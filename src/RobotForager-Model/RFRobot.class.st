@@ -2,106 +2,61 @@ Class {
 	#name : 'RFRobot',
 	#superclass : 'CMAgent',
 	#instVars : [
-		'minerals',
-		'allRobots'
+		'collectedMinerals'
 	],
 	#category : 'RobotForager-Model',
 	#package : 'RobotForager-Model'
 }
 
-{ #category : 'accessing' }
-RFRobot >> allRobots: aCollection [
-
-	allRobots := aCollection
-]
-
 { #category : 'as yet unclassified' }
 RFRobot >> collectMineral [
 	<action>
-	minerals addAll:
-		((self cell getMinerals) do: [ :mineral |
-			 mineral leave.
-			 mineral ])
+	| mineral |
+	self cell hasMineral ifFalse: [ ^ self ]. 
+	mineral := self cell getMineral.
+	collectedMinerals add: mineral.
+	mineral leave
 ]
 
-{ #category : 'testing' }
-RFRobot >> hasNeighbourWithMineral [
-
-	^ self cell neighbourhood anySatisfy: [ :each | each hasMineral ]
+{ #category : 'accessing' }
+RFRobot >> collectedMinerals [
+	^ collectedMinerals
 ]
 
 { #category : 'initialization' }
 RFRobot >> initialize [
-
 	super initialize.
-	minerals := OrderedCollection new.
-	allRobots := OrderedCollection new
+	collectedMinerals := OrderedCollection new
 ]
 
 { #category : 'accessing' }
-RFRobot >> minerals [
-
-	^ minerals
-]
-
-{ #category : 'as yet unclassified' }
 RFRobot >> move [
 	<action>
 	self cell neighbourhood
 		detect: [ :each | each hasMineral ]
 		ifFound: [ :each | self moveTo: each ]
-		ifNone: [ self randomWalk ]
+		ifNone: [ self moveRandomly ]
 ]
 
 { #category : 'as yet unclassified' }
-RFRobot >> moveCollaboratively [
-
-	self cell neighbourhood
-		detect: [ :each | each hasMineral ]
-		ifFound: [ :each | self moveTo: each ]
-		ifNone: [ 
-			allRobots
-				detect: [ :robot | robot hasNeighbourWithMineral ]
-				ifFound: [ :robot | self moveTowards: robot neighbourWithMineral ]
-				ifNone: [ self randomWalk ] ]
+RFRobot >> moveRandomly [
+	<action>
+	self randomWalkConstrainedBy: [ :aCell |
+		(aCell hasOccupantsOfClass: RFRobot) not ]
 ]
 
-{ #category : 'testing' }
-RFRobot >> neighbourWithMineral [
-
-	^ self cell neighbourhood detect: [ :each | each hasMineral ]
-]
-
-{ #category : 'pov' }
+{ #category : 'accessing' }
 RFRobot >> pov [
-
-	<pov>
-		
-	^ CMPointOfView
-		tile: RFIcons robot
-		size: 0.9
-]
-
-{ #category : 'pov' }
-RFRobot >> povSimple [
-
 	<pov>
 	^ CMPointOfView
 		color: CMColor blue
 		shape: #star
-		size:  0.7
+		size: 0.6
 ]
 
 { #category : 'control' }
 RFRobot >> step [
 	<action>
 	self move.
-	self collectMineral.
-]
-
-{ #category : 'control' }
-RFRobot >> stepCollaboratively [
-
-	self moveCollaboratively.
-	self collectMineral.
+	self collectMineral
 ]

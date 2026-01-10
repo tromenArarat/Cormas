@@ -5,29 +5,13 @@ Class {
 	#package : 'RobotForager-Model'
 }
 
-{ #category : 'accessing' }
-RFCell >> getMinerals [
-
-	^ self occupantsOfClass: RFMineral
+{ #category : 'testing' }
+RFCell >> getMineral [
+	self hasMineral ifFalse: [ self error: 'This cell has no minerals' ].
+	^ (self occupantsOfClass: RFMineral) first
 ]
 
 { #category : 'testing' }
 RFCell >> hasMineral [
-
-	^ self getMinerals isNotEmpty 
-]
-
-{ #category : 'accessing' }
-RFCell >> pov [
-
-	<pov>
-	
-	^ CMPointOfView tile: RFIcons floor
-]
-
-{ #category : 'accessing' }
-RFCell >> povSimple [
-
-	<pov>
-	^ CMPointOfView color: Color gray lighter
+	^ self hasOccupantsOfClass: RFMineral
 ]
