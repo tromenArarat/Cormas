@@ -38,11 +38,11 @@ RFRobot >> move [
 		ifNone: [ self moveRandomly ]
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'move' }
 RFRobot >> moveRandomly [
 	<action>
 	self randomWalkConstrainedBy: [ :aCell |
-		(aCell hasOccupantsOfClass: RFRobot) not ]
+		(aCell hasOccupantsOfClass: self class) not ]
 ]
 
 { #category : 'accessing' }

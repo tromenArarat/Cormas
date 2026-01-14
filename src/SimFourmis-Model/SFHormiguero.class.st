@@ -1,6 +1,6 @@
 Class {
 	#name : 'SFHormiguero',
-	#superclass : 'CMAgent',
+	#superclass : 'CMAgentGroup',
 	#instVars : [
 		'reina',
 		'colorHormiguero'
@@ -26,12 +26,17 @@ SFHormiguero >> colorHormiguero: anObject [
 	colorHormiguero := anObject
 ]
 
-{ #category : 'as yet unclassified' }
+{ #category : 'initialization' }
 SFHormiguero >> crearReina [
-	| reina |
-	reina := SFReina new.
+	reina := SFReina new . 
 	reina miHormiguero: self.
-	reina coordinates: self coordinates .
+	self addChild: reina .
+	reina cell: self cell.
+	"reina := SFReina new.
+	reina miHormiguero: self.
+	modelo:= self getModel .
+	modelo addAgent: reina.
+	reina coordinates: self coordinates ."
 ]
 
 { #category : 'initialization' }
